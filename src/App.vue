@@ -1,17 +1,17 @@
 <script>
-import Parent from './Parent.vue'
+import RegistrationPage from "./views/RegistrationPage.vue"
 
 export default {
   name: 'App',
   components: {
-    Parent
+    RegistrationPage
   },
 }
 </script>
 
 <template>
   <div id="app">
-    <Parent />
+    <RegistrationPage/>
   </div>
 </template>
 
