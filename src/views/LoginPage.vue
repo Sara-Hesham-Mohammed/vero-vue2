@@ -1,60 +1,55 @@
+ 
 <script>
 import api from "../services/api";
 
 export default {
-  name: "RegistrationForm",
+  name: "LoginPage",
   data() {
-    return { fullname: null, mobile_number: null, email: null, password: null, number_length : 11 };
+    return { email: null, password: null};
   },
   methods: {
     onSubmit(){
       let userInfo = {
-        name : this.fullname,
         email: this.email,
-        mobile_number: this.mobile_number,
         password: this.password
       }
 
       //reset the form
-      this.fullname = null;
       this.email = null;
-      this.mobile_number = null;
       this.password = null;
 
       console.log("userInfo", userInfo);
       
       //send data to the server
-      api.sendData(userInfo);
+      api.sendData(userInfo).then(response => {
+        if (response.status === 200) {
+          alert("Registration successful!");
+        } else {
+          alert("Registration failed. Please try again.");
+        }
+      });
     }
   },
 };
 </script>
-<!-- Registration Form -->
+<!-- Login Form -->
 <template>
-  <form method="POST" class="register-form" @submit.prevent="onSubmit">
-    <p class="form-title">Register</p>
-
-    <label for="name">Full Name</label>
-    <input type="text" name="name" v-model="fullname" required />
-
-    <label for="number">Phone Number</label>
-    <input type="text" name="number" v-model="mobile_number" required />
-
-
-    <div v-if="mobile_number && mobile_number.length !== number_length" id="error-message" class="error">Phone Number must be 11 digits</div>
+  <form method="POST" class="login-form" @submit.prevent="onSubmit">
+    <p class="form-title">Login</p>
 
     <label for="email">Email</label>
     <input type="email" name="email" v-model="email" required />
 
     <label for="password">Password</label>
     <input type="password" name="password" v-model="password" required />
+      <router-link to="/forgot-password">Forgot Password?</router-link>
 
-    <button type="submit">Register</button>
+    <button type="submit">Login</button>
   </form>
 </template>
 
 <style scoped>
-.register-form {
+.login-form {
   max-width: 400px;
   margin: 50px auto;
   padding: 30px 25px;
