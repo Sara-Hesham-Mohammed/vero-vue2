@@ -2,14 +2,16 @@
 export default {
   name: "HomePage",
   data() {
-    return {
-      testCount: 0,
-    };
+    return {};
+  },
+  computed: {
+    testCount: function () {
+      return this.$store.state.count;
+    },
   },
   methods: {
     testVuex() {
-      this.$store.commit("increment");
-      this.testCount = this.$store.state.count;
+      this.$store.dispatch('increment');
       console.log(this.testCount);
     },
   },
@@ -18,10 +20,6 @@ export default {
 <template>
   <div>
     <h1>Welcome to the VERO app</h1>
-    <p>{{ $store.state.count }}</p>
-    <!-- 2 -->
-    <p>{{ this.$store.state.count }}</p>
-    <!-- 3 -->
     <p>{{ this.testCount }}</p>
     <button type="button" @click="testVuex">Increment</button>
   </div>
