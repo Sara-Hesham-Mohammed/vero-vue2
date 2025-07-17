@@ -1,23 +1,15 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import moduleA from './moduleA'
+import moduleB from './moduleB'
 
 Vue.use(Vuex)
-export default new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  },
-  actions: {
-    increment({ commit }) {
-      commit('increment')
-    }
-  },
-  getters:{
 
+export default new Vuex.Store({
+  modules:{
+    a: moduleA,
+    b: moduleB
   }
+  
 })
 

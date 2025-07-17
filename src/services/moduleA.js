@@ -1,0 +1,20 @@
+const moduleA = {
+  state: () => ({ 
+     count: 0
+   }),
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  },
+  actions: {
+    increment({ commit }) {
+      commit('increment')
+    }
+  },
+  getters:{
+
+  }
+}
+
+export default moduleA

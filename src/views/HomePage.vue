@@ -6,7 +6,7 @@ export default {
   },
   computed: {
     testCount: function () {
-      return this.$store.state.count;
+      return this.$store.state.a.count; //module a
     },
   },
   methods: {
@@ -20,7 +20,7 @@ export default {
 <template>
   <div>
     <h1>Welcome to the VERO app</h1>
-    <p>{{ this.testCount }}</p>
+    <p>Count: {{ this.testCount }}</p>
     <button type="button" @click="testVuex">Increment</button>
   </div>
 </template>
