@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     testVuex() {
-      this.$store.dispatch('increment');
+      this.$store.dispatch('a/increment');
       console.log(this.testCount);
     },
   },
@@ -21,6 +21,7 @@ export default {
   <div>
     <h1>Welcome to the VERO app</h1>
     <p>Count: {{ this.testCount }}</p>
+    <p>Count * 2: {{ $store.getters['a/getCountTimesTwo'] }}</p>
     <button type="button" @click="testVuex">Increment</button>
   </div>
 </template>

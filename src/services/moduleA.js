@@ -1,20 +1,24 @@
 const moduleA = {
-  state: () => ({ 
-     count: 0
-   }),
+  namespaced: true,
+  //local state
+  state: () => ({
+    count: 0,
+  }),
   mutations: {
-    increment (state) {
-      state.count++
-    }
+    increment(state) {
+      state.count++;
+    },
   },
   actions: {
     increment({ commit }) {
-      commit('increment')
-    }
+      commit("increment");
+    },
   },
-  getters:{
+  getters: {
+    getCountTimesTwo: (state) => {
+      return state.count * 2;
+    },
+  },
+};
 
-  }
-}
-
-export default moduleA
+export default moduleA;
