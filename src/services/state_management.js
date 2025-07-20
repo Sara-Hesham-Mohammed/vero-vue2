@@ -6,7 +6,32 @@ import moduleB from './moduleB'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules:{
+  state: {
+    user: null,
+    isLoggedIn: false,
+  },
+  mutations: {
+    setUser(state, user) {
+      state.user = user;
+    },
+    clearUser(state) {
+      state.user = null;
+      state.isLoggedIn = false;
+    },
+    setIsLoggedIn(state, status) {
+      state.isLoggedIn = status;
+    }
+  },
+  actions: {
+    login({ commit }, user) {
+      commit('setUser', user);
+      commit('setIsLoggedIn', true);
+    },
+    logout({ commit }) {
+      commit('clearUser');
+    }
+  },
+  modules: {
     a: moduleA,
     b: moduleB
   }

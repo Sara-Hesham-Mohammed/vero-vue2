@@ -1,30 +1,39 @@
 <script>
-
 export default {
-  name: 'App',
-}
+  name: "App",
+};
 </script>
 
-<template >
-  <div id="app" >
+<template>
+  <div id="app">
     <div class="container">
-    <h1>VERO App</h1>
+      <h1>VERO App</h1>
       <nav>
-      <router-link class="router-link" to="/">Home</router-link>
-      <router-link class="router-link" to="/login">Login</router-link>  
-      <router-link class="router-link" to="/signup">Sign Up</router-link>
-    </nav>
+        <router-link class="router-link" to="/">Home</router-link>
+        <router-link class="router-link" to="/profile">Profile</router-link>
+        <div>
+          <router-link class="router-link" to="/login">Login </router-link> / <router-link class="router-link" to="/signup">Sign Up</router-link>
+        </div>
+      </nav>
     </div>
-    
-    <router-view/>
+
+    <router-view />
   </div>
 </template>
 
-<style scoped >
+<style scoped>
+.btn {
+  margin: 0 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .container {
   background-color: #f8f9fa;
 }
-h1{
+h1 {
   text-align: center;
   margin-bottom: 20px;
 }
@@ -34,9 +43,8 @@ nav {
   padding: 12px 0;
   border-bottom: 1px solid #eee;
 }
-.router-link{
+.router-link {
   text-decoration: none;
   color: #000;
 }
-
 </style>

@@ -2,6 +2,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8000/api"; //PUT IT IN THE ENV
 
+/******** CRUD ******/
 async function sendData(data) {
   try {
     const response = await axios.post(`${API_URL}/users`, data);
@@ -52,9 +53,42 @@ async function deleteData(id) {
   }
 }
 
+/************ Auth ************/
+
+/***** Not a vue component so store has to be explicitly passed **** */
+//is there a better way than just passing the store???
+async function login(credentials, store) {
+  try {
+    const response = await axios.post(`${API_URL}/login`, credentials);
+
+    console.log("Login successful:", response.data);
+
+    // need to make a user obj
+    store.dispatch("login", response.data.user);
+    store.commit("setIsLoggedIn", true);
+
+    return response.data;
+  } catch (error) {
+    // Switching on error responses
+    switch (error.response && error.response.status) {
+      case 401:
+        console.error("Unauthorized: Invalid credentials");
+        break;
+      case 403:
+        console.error(
+          "Forbidden: You do not have permission to access this resource"
+        );
+        break;
+      case 422:
+        console.error("Validation errors:", error.response.data.errors);
+    }
+    console.error("There was an error logging in:", error);
+  }
+}
+
 async function forgotPassword(email) {
   try {
-    const response = await axios.post(`${API_URL}/forgot-password`, email );
+    const response = await axios.post(`${API_URL}/forgot-password`, email);
     return response.data;
   } catch (error) {
     console.error(
@@ -80,4 +114,5 @@ export default {
   deleteData,
   forgotPassword,
   resetPassword,
+  login,
 };

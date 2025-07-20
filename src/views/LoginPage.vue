@@ -21,13 +21,7 @@ export default {
       console.log("userInfo", userInfo);
       
       //send data to the server
-      api.sendData(userInfo).then(response => {
-        if (response.status === 200) {
-          alert("Registration successful!");
-        } else {
-          alert("Registration failed. Please try again.");
-        }
-      });
+      api.login(userInfo,this.$store);
     }
   },
 };
@@ -43,7 +37,6 @@ export default {
     <label for="password">Password</label>
     <input type="password" name="password" v-model="password" required />
       <router-link to="/forgot-password">Forgot Password?</router-link>
-
     <button type="submit">Login</button>
   </form>
 </template>
